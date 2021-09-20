@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Admin\User;
+namespace App\Http\Livewire\Admin\Application;
 
 use Session;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\Application;
 use Livewire\Component;
 
 class Index extends Component
@@ -12,17 +11,17 @@ class Index extends Component
     public $data = [];
 
     public function mount() {
-        $this->data = User::with('userRole.role')->get();
+        $this->data = Application::all();
     }
 
     public function destroy($id) {
-        User::find($id)->delete();
+        Application::find($id)->delete();
         Session::flash('success', 'Berhasil menghapus data!');
-        return redirect()->route('user.index');
+        return redirect()->route('application.index');
     }
 
     public function render()
     {
-        return view('livewire.admin.user.index');
+        return view('livewire.admin.application.index');
     }
 }

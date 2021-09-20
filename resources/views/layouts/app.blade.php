@@ -10,7 +10,10 @@
         @else
             @include('layouts.navbars.auth.sidebar')
             @include('layouts.navbars.auth.nav')
-            {{ $slot }}
+            <div class="container-fluid py-4">
+                @include('components.alert')
+                {{ $slot }}
+            </div>
                 <div class="container-fluid">
                     <div class="row">
                         @include('layouts.footers.auth.footer')
