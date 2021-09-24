@@ -9,4 +9,8 @@ class Role extends Model
 {
     protected $fillable = ['name', 'role'];
     public $timestamps = false;
+
+    public function processRole() {
+        return $this->hasMany('App\Models\ProcessRole', 'process_id', 'id');
+    }
 }

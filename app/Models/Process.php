@@ -15,4 +15,8 @@ class Process extends Model
     public function application() {
         return $this->belongsTo('App\Models\Application', 'application_id', 'id');
     }
+    
+    public function processAction() {
+        return $this->hasMany('App\Models\ProcessAction', 'process_id', 'id');
+    }
 }

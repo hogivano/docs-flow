@@ -25,7 +25,7 @@ class Detail extends Component
             Session::flash('error', 'Application tidak ditemukan');
             return redirect()->route('application.index');
         }
-        $this->processes = Process::where('application_id', $id)->orderBy('order', 'asc')->get();
+        $this->processes = Process::where('application_id', $id)->with('processAction')->orderBy('order', 'asc')->get();
     }
 
     public function regenerateOrderProcess($applicationId) {

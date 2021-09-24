@@ -49,8 +49,14 @@
                                 class="text-dark ms-sm-2 font-weight-bold">{{ $process->message_failure }}</span></span>
                         <span class="text-xs text-success">Message Success: <span
                                 class="text-dark ms-sm-2 font-weight-bold">{{ $process->message_success }}</span></span>
+                        <div class="mt-3 text-sm">
+                            Process Action : @if(sizeof($process->processAction) > 0) {{ sizeof($process->processAction) }} @else <span class="text-danger">Belum disetting</span> @endif
+                        </div>
                     </div>
                     <div class="ms-auto text-end">
+                        <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('process.detail', ['id' => $process->id]) }}">
+                            <i class="far fa-eye text-dark"></i>
+                        </a>
                         <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('process.edit', ['id' => $process->id]) }}"><i
                                 class="fas fa-pencil-alt text-info" aria-hidden="true"></i></a>
                         <button  class="btn btn-link text-danger text-gradient px-3 mb-0" type="button"
