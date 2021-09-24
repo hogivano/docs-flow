@@ -9,8 +9,11 @@ use App\Http\Livewire\Admin\Roles\Form as RolesForm;
 use App\Http\Livewire\Admin\User\Index as UserIndex;
 use App\Http\Livewire\Admin\User\Form as UserForm;
 use App\Http\Livewire\Admin\Application\Index as AppIndex;
+use App\Http\Livewire\Admin\Application\Detail as AppDetail;
 use App\Http\Livewire\Admin\Application\Form as AppForm;
 use App\Http\Livewire\Admin\Process\Index as ProcessIndex;
+use App\Http\Livewire\Admin\Process\Form as ProcessForm;
+use App\Http\Controllers\ProcessController;
 use App\Http\Livewire\Logout;
 
 /*
@@ -33,14 +36,20 @@ Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('/', Dashboard::class)->name('dashboard');
 
     Route::prefix('process')->name('process')->group(function() {
-        Route::get('/{application_id}', ProcessIndex::class)->name('.index');
+        Route::get('/', ProcessIndex::class)->name('.index');
+        Route::get('/create', ProcessForm::class)->name('.create');
+        Route::get('create/{application_id}', ProcessForm::class)->name('.create.application');
+        Route::get('/edit/{id}', ProcessForm::class)->name('.edit');
+        Route::post('/change-order', [ProcessController::class, 'changeOrder'])->name('.change-order');
     });
 
     Route::prefix('application')->name('application')->group(function() {
         Route::get('/', AppIndex::class)->name('.index');
         Route::get('create', AppForm::class)->name('.create');
         Route::get('edit/{id}', AppForm::class)->name('.edit');
+        Route::get('/{id}', AppDetail::class)->name('.detail');
     });
+    
     Route::prefix('roles')->name('roles')->group(function() {
         Route::get('/', RolesIndex::class)->name('.index');
         Route::get('create', RolesForm::class)->name('.create');

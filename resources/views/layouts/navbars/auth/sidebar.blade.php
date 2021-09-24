@@ -90,13 +90,23 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ in_array(Route::currentRouteName(), ['application.index', 'application.create', 'application.edit']) ? 'active' : '' }}"
+                <a class="nav-link {{ in_array(Route::currentRouteName(), ['application.index', 'application.create', 'application.edit', 'application.detail']) ? 'active' : '' }}"
                     href="{{ route('application.index') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-file-contract"></i>
                     </div>
                     <span class="nav-link-text ms-1">Application</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ in_array(Route::currentRouteName(), ['process.index', 'process.create', 'process.edit']) ? 'active' : '' }}"
+                    href="{{ route('process.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Process</span>
                 </a>
             </li>
             <li class="nav-item">

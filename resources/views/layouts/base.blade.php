@@ -48,7 +48,7 @@
     <!-- Alpine -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     @livewireStyles
-
+    @stack('styles')
 </head>
 
 <body class="g-sidenav-show">
@@ -74,6 +74,8 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets/js/soft-ui-dashboard.min.js?v=1.0.2') }}"></script>
     @livewireScripts
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

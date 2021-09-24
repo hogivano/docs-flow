@@ -46,9 +46,9 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end">
-                                    <a class="bg-success px-2 mx-1 rounded-2 cursor-pointer"
-                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="tahap proses" data-container="body" data-animation="true">
-                                        <i class="fas fa-sitemap text-white"></i>
+                                    <a class="bg-secondary px-2 mx-1 rounded-2 cursor-pointer" href="{{ route('application.detail', ['id' => $app->id]) }}"
+                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="detail application" data-container="body" data-animation="true">
+                                        <i class="far fa-eye text-white"></i>
                                     </a>
                                     <a class="bg-info px-2 mx-1 rounded-2 cursor-pointer"
                                         href="{{ route('application.edit', ['id' => $app->id]) }}">

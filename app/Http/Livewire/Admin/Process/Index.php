@@ -10,16 +10,15 @@ use Livewire\Component;
 class Index extends Component
 {
     public $data = [];
-    public $application;
 
-    public function mount($application_id) {
-        $this->application = Application::find($application_id);
+    public function mount() {
+        $this->data = Process::with('application')->get();
+    }
 
-        if ($this->application) {
-            Session::flash('error', 'Application tidak ditemukan');
-            return redirect()->route('application.index');
-        }
-        $this->data = Process::where('application_id', $application_id)->get();
+    public function destroy($id) {
+        Process::find($id)->delete();
+        Session::flash('success', 'Berhasil menghapus data!');
+        return redirect()->route('process.index');
     }
 
     public function render()

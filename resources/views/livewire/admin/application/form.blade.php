@@ -34,6 +34,7 @@
                         <input class="form-check-input" wire:model="is_ordered" type="checkbox" value="1" checked="">
                         <label class="custom-control-label">Urutan</label>
                     </div>
+                    <small>Untuk aktifkan alur proses secara runtut.</small>
                 </div>
             </div>
             <button type="submit" class="btn bg-gradient-primary">

@@ -16,9 +16,8 @@
 @elseif($message = Session::get('error'))
     <div class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
         <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-        <span class="alert-text"><strong>Danger!</strong> This is a danger alert—check it out!</span>
+        <span class="alert-text"><strong>Danger!</strong> {{ $message }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
         </button>
     </div>
 @endif
