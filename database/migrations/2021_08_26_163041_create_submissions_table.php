@@ -19,7 +19,7 @@ class CreateSubmissionsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->unsignedInteger('application_id');
-            $table->foreign('application_id')->references('id')->on('applications');
+            $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
             $table->unsignedInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');
             $table->unsignedInteger('updated_by');

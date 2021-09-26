@@ -21,13 +21,14 @@ class CreateProcessActionsTable extends Migration
             $table->boolean('is_required')->default(false);
             $table->boolean('process_show')->default(false);
             $table->unsignedInteger('related_process_action_id')->nullable();
-            $table->foreign('related_process_action_id')->references('id')->on('process_actions');
-            $table->unsignedInteger('base_action_id');
-            $table->foreign('base_action_id')->references('id')->on('base_actions');
+            $table->foreign('related_process_action_id')->references('id')->on('process_actions')->onDelete('set null');
+            $table->unsignedInteger('base_action_id')->nullable();
+            $table->foreign('base_action_id')->references('id')->on('base_actions')->onDelete('set null');
             $table->text('message_pending')->nullable();
             $table->text('message_failure')->nullable();
             $table->text('message_success')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

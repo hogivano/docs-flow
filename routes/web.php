@@ -17,6 +17,9 @@ use App\Http\Livewire\Admin\Process\Detail as ProcessDetail;
 use App\Http\Livewire\Admin\BaseAction\Index as BaseActionIndex;
 use App\Http\Livewire\Admin\BaseAction\Form as BaseActionForm;
 use App\Http\Livewire\Admin\ProcessAction\Form as ProcessActionForm;
+use App\Http\Livewire\Admin\ProcessRole\Index as ProcessRoleIndex;
+use App\Http\Livewire\Admin\ProcessRole\Form as ProcessRoleForm;
+use App\Http\Livewire\Admin\Permohonan\Index as PermohonanIndex;
 use App\Http\Controllers\ProcessController;
 use App\Http\Livewire\Logout;
 
@@ -36,13 +39,23 @@ Route::get('/', Home::class)->name('home');
 Route::get('/login', Login::class)->name('login');
 Route::get('/logout', Logout::class)->name('logout');
 
-Route::middleware('auth')->prefix('admin')->group(function() {
+Route::middleware(['auth', 'role'])->prefix('admin')->group(function() {
     Route::get('/', Dashboard::class)->name('dashboard');
+
+    Route::prefix('permohonan')->name('permohonan')->group(function() {
+        Route::get('/', PermohonanIndex::class)->name('.index');
+    });
 
     Route::prefix('process-action')->name('process-action')->group(function() {
         Route::get('/create/{process_id}', ProcessActionForm::class)->name('.create');
         Route::get('/edit/{id}', ProcessActionForm::class)->name('.edit');
         Route::get('edit/{id}/process/{process_id}', ProcessActionForm::class)->name('.edit-byProcessId');
+    });
+
+    Route::prefix('process-role')->name('process-role')->group(function() {
+        Route::get('/', ProcessRoleIndex::class)->name('.index');
+        Route::get('/application/{application_id}', ProcessRoleForm::class)->name('.setting-byappid');
+        Route::get('/process/{process_id}', ProcessRoleForm::class)->name('.setting-byprocessId');
     });
 
     Route::prefix('process')->name('process')->group(function() {

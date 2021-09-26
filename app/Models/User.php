@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function userRole() {
         return $this->hasOne('App\Models\UserRole', 'user_id', 'id');
     }
+
+    public static function baseAccess() {
+        return ['permohonan.index', 'dashboard'];
+    }
 }

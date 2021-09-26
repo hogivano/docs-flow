@@ -9,7 +9,9 @@
                         <label>Role</label>
                         <input type="text" class="form-control" name="role" placeholder="role" required
                             wire:model="role">
-                        <small class="text-xxs">Unique type</small>
+                        <div>
+                            <small class="text-xxs">Unique type</small>
+                        </div>
                         @error('role')
                             <span class="text-danger">
                                 {{ $message }}

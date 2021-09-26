@@ -18,7 +18,7 @@
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
-                    checked="{{ ($application->is_ordered == 1) ? true : false }}" disabled>
+                    @if($application->is_ordered == 1) checked @endif disabled>
                 <label class="form-check-label" for="flexSwitchCheckDefault">Harus Urut</label>
             </div>
         </div>

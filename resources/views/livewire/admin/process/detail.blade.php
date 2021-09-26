@@ -1,4 +1,5 @@
 <section>
+    @if($process && $application)
     <div class="card mb-4">
         <div class="card-body p-3">
             <div class="d-flex justify-content-between">
@@ -35,12 +36,26 @@
                     <div class="d-flex flex-column">
                         <h6 class="mb-1 text-sm">{{ $pro->label_input }}</h6>
                         <p class="text-black-50 text-sm">{{ $pro->description }}</p>
+                        <span class="mb-4 text-xs text-dark">Label Input: <span class="text-dark font-weight-bold ms-sm-2">
+                            {{ ($pro->label_input) ? $pro->label_input : 'null' }}</span></span>
                         <span class="mb-2 text-xs">Message Pending: <span class="text-dark font-weight-bold ms-sm-2">
                             {{ ($pro->message_pending) ? $pro->message_pending : 'null' }}</span></span>
                         <span class="mb-2 text-xs text-danger">Message Failure: <span
                                 class="text-dark ms-sm-2 font-weight-bold">{{ ($pro->message_failure) ? $pro->message_failure : 'null' }}</span></span>
                         <span class="text-xs text-success">Message Success: <span
                                 class="text-dark ms-sm-2 font-weight-bold">{{ ($pro->message_success) ? $pro->message_success : 'null' }}</span></span>
+                        <div>
+                            <div class="form-check form-switch mt-4">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                                    @if($pro->is_required == 1) checked @endif disabled>
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Mandatory (aksi harus dilakukan)</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                                    @if($pro->process_show == 1) checked @endif disabled>
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Tampil Aksi (akan tampil di pelanggan)</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="ms-auto text-end">
                         <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('process-action.edit-byProcessId', ['id' => $pro->id, 'process_id' => $process->id]) }}"><i
@@ -58,4 +73,5 @@
             </div>
         </div>
     </div>
+    @endif
 </section>

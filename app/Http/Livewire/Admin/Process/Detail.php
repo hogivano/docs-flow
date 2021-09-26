@@ -20,9 +20,9 @@ class Detail extends Component
         $this->application = Application::find($this->process->application_id);
         $this->processAction = ProcessAction::where('process_id', $id)->get();
 
-        if (!$this->process && !$this->application) {
+        if (!$this->process || !$this->application) {
             Session::flash('error', 'Data tidak ditemukan');
-            return redirect()->back();
+            return redirect()->route('process.index');
         }
     }
 

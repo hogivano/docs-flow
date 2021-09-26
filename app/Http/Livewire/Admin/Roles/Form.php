@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Roles;
 
+use Session;
 use Route;
 use App\Models\Role;
 use Livewire\Component;
@@ -19,10 +20,36 @@ class Form extends Component
         'name' => 'required'
     ];
 
+    public function checkOnDbRole($new) {
+        $route = ($this->data) ? route('roles.edit', ['id' => $this->data->id]) : route('roles.create');
+        $role = Role::where('role', $new)->first();
+        if ($role) {
+            $errors = $this->getErrorBag();
+            $errors->add('role', 'The role has already been taken.');
+            return $errors;
+        }
+        return null;
+    }
+
+    public function checkRoleUnique($new, $old = null) {
+        if ($old) {
+            if ($old != $new) {
+                return $this->checkOnDbRole($new);
+            }
+        } else {
+            return $this->checkOnDbRole($new);
+        }
+        return null;
+    }
+
     public function store() {
         $validatedData = $this->validate();
         if (!$validatedData) {
             return $validatedData;
+        }
+        $checkUnique = $this->checkRoleUnique($this->role);
+        if ($checkUnique) {
+            return $checkUnique;
         }
         Role::create($validatedData);
         Session::flash('success', 'Berhasil menambahkan role');
@@ -34,7 +61,13 @@ class Form extends Component
         if (!$validatedData) {
             return $validatedData;
         }
-        Role::where('id', $id)->update([
+        $update = Role::find($id);
+        $checkUnique = $this->checkRoleUnique($this->role, $update->role);
+        if ($checkUnique) {
+            return $checkUnique;
+        }
+        
+        $update->update([
             'role' => $this->role,
             'name' => $this->name
         ]);

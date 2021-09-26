@@ -26,8 +26,11 @@
                             class="text-dark ms-sm-2 font-weight-bold">{{ $process->message_success }}</span></span>
                 </div>
                 <div class="ms-auto text-end">
-                    <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('process.edit', ['id' => $process->id]) }}"><i
-                            class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                    <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('process.detail', ['id' => $process->id]) }}">
+                        <i class="far fa-eye text-dark me-2"></i>Detail
+                    </a>
+                    <a class="btn btn-link text-info px-3 mb-0" href="{{ route('process.edit', ['id' => $process->id]) }}"><i
+                            class="fas fa-pencil-alt text-info me-2" aria-hidden="true"></i>Edit</a>
                     @if($process->application)
                         <button  class="btn btn-link text-danger text-gradient px-3 mb-0" type="button"
                             wire:click="destroy({{ $process->id }})"

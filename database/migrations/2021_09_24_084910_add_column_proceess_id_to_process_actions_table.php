@@ -16,7 +16,7 @@ class AddColumnProceessIdToProcessActionsTable extends Migration
         Schema::table('process_actions', function (Blueprint $table) {
             //
             $table->unsignedInteger('process_id');
-            $table->foreign('process_id')->references('id')->on('process');
+            $table->foreign('process_id')->references('id')->on('process')->onDelete('cascade');
         });
     }
 

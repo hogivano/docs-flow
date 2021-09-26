@@ -21,7 +21,7 @@ class Form extends Component
 
     protected $rules = [
         'name' => 'required',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:users,email',
         'password' => 'string|min:6',
         'role_id' => 'required'
     ];
@@ -47,6 +47,10 @@ class Form extends Component
     }
 
     public function update($id) {
+        $user = User::find($id);
+        if ($user->email == $this->email) {
+            unset($this->rules['email']);
+        }
         $validatedData = $this->validate();
         if (!$validatedData) {
             return $validatedData;
@@ -54,10 +58,18 @@ class Form extends Component
         if ($this->password) {
             $validatedData['password'] = Hash::make($this->password);
         }
-        User::find($id)->update($validatedData);
-        UserRole::where('user_id', $id)->update([
-            'role_id' => $this->role_id,
-        ]);
+        $user->update($validatedData);
+        $userRole = UserRole::where('user_id', $id)->first();
+        if ($userRole) {
+            UserRole::where('user_id', $id)->update([
+                'role_id' => $this->role_id,
+            ]);
+        } else {
+            UserRole::create([
+                'user_id' => $user->id,
+                'role_id' => $this->role_id
+            ]);
+        }
 
         Session::flash('success', 'Berhasil edit user');
         return redirect()->route('user.index');

@@ -18,8 +18,10 @@ class ProcessRole extends Model
         'delete'
     ];
 
+    public $timestamps = false;
+
     public function process() {
-        return $this->belongsTo('App\Models\Process', 'process', 'id');
+        return $this->belongsTo('App\Models\Process', 'process_id', 'id');
     }
 
     public function role() {

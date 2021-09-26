@@ -16,7 +16,7 @@ class CreateSubmissionRolesTable extends Migration
         Schema::create('submission_roles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->unsignedInteger('submission_id');
             $table->foreign('submission_id')->references('id')->on('submissions');
         });

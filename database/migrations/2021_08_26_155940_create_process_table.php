@@ -24,6 +24,7 @@ class CreateProcessTable extends Migration
             $table->text('message_failure')->nullable();
             $table->text('message_success')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
