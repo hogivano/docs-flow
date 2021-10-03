@@ -13,8 +13,8 @@ class AppServiceProvider extends ServiceProvider
 {
     public function processService()
     {
-        //delete process
-        Process::saved(function($process) {
+        //save process
+        Process::created(function($process) {
             GenProcessRole::generateByProcess($process->id);
         });
 
@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     public function roleService() {
-        Role::saved(function($role) {
+        Role::created(function($role) {
             GenProcessRole::generateByRole($role->id);
         });
     }

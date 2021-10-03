@@ -47,6 +47,8 @@ class User extends Authenticatable
     }
 
     public static function baseAccess() {
-        return ['permohonan.index', 'dashboard'];
+        return ['permohonan.index', 'permohonan.create',
+        'permohonan.edit', 'permohonan.detail',
+        'permohonan.submit-action','dashboard'];
     }
 }

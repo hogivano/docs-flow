@@ -21346,4 +21346,12 @@ p {
     position: absolute;
 }
 
-/*# sourceMappingURL=dashboard-free.css.map */
+@media only screen and (min-width: 768px) {
+    .w-md-50 {
+        width: 50% !important;
+    }
+
+    .d-md-block {
+        display: block !important;
+    }
+}

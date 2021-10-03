@@ -3,7 +3,7 @@
         <div class="card-body p-3">
             <div class="d-flex justify-content-between">
                 <div class="title">
-                    <h5 class="mb-0 text-black-50">Application</h5>
+                    <h5 class="mb-0 text-black-50">Template</h5>
                     <h5 class="mb-1 pt-2 text-bold mb-3">{{ $application->title }}</h5>
                 </div>
                 <div>

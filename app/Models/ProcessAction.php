@@ -25,6 +25,10 @@ class ProcessAction extends Model
         'process_id',
     ];
 
+    public function processActionUser() {
+        return $this->hasMany('App\Models\ProcessActionUser', 'process_action_id', 'id');
+    }
+
     public function baseAction() {
         return $this->belongsTo('App\Models\BaseAction', 'base_action_id', 'id');
     }

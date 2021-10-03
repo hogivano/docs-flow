@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Application</label>
+                        <label>Template Permohonan</label>
                         <select class="form-control" name="application_id" required
                             wire:model="application_id" @if($disableOption) disabled @endif>
                             <option value="" class="text-black-50">pilih application</option>

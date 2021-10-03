@@ -26,7 +26,7 @@ class Login extends Component
         if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["email" => $this->email])->first();
             auth()->login($user, $this->remember_me);
-            return redirect()->route('dashboard');        
+            return redirect()->route('permohonan.index');        
         }
         else{
             $errors = $this->getErrorBag();

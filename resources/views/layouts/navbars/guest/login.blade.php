@@ -10,7 +10,7 @@
         <a href="/">
             <div class="d-flex align-items-center">
                 <img src="/logo.jpeg" class="icon-img mr-2" />
-                <p class="mb-0 px-3">Kementrian Pekerjaan Umum dan Perumahan Rakyat Republik Indonesia</p>
+                <p class="mb-0 px-3 text-sm">Kementrian Pekerjaan Umum dan Perumahan Rakyat Republik Indonesia</p>
             </div>
         </a>
     </div>

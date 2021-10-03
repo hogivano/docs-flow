@@ -13,4 +13,8 @@ class Role extends Model
     public function processRole() {
         return $this->hasMany('App\Models\ProcessRole', 'process_id', 'id');
     }
+
+    public function submissionCreated() {
+        return $this->hasOne('App\Models\SubmissionCreated', 'role_id', 'id');
+    }
 }

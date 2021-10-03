@@ -20,6 +20,9 @@ use App\Http\Livewire\Admin\ProcessAction\Form as ProcessActionForm;
 use App\Http\Livewire\Admin\ProcessRole\Index as ProcessRoleIndex;
 use App\Http\Livewire\Admin\ProcessRole\Form as ProcessRoleForm;
 use App\Http\Livewire\Admin\Permohonan\Index as PermohonanIndex;
+use App\Http\Livewire\Admin\Permohonan\Form as PermohonanForm;
+use App\Http\Livewire\Admin\Permohonan\Detail as PermohonanDetail;
+use App\Http\Livewire\Admin\SubmissionCreated\Index as SubmissionCreatedIndex;
 use App\Http\Controllers\ProcessController;
 use App\Http\Livewire\Logout;
 
@@ -42,8 +45,17 @@ Route::get('/logout', Logout::class)->name('logout');
 Route::middleware(['auth', 'role'])->prefix('admin')->group(function() {
     Route::get('/', Dashboard::class)->name('dashboard');
 
+    Route::get('/download/{id}', [ProcessController::class, 'downloadFile'])->name('download');
     Route::prefix('permohonan')->name('permohonan')->group(function() {
         Route::get('/', PermohonanIndex::class)->name('.index');
+        Route::get('/{id}/detail', PermohonanDetail::class)->name('.detail');
+        Route::get('/create', PermohonanForm::class)->name('.create');
+        Route::get('/edit/{id}', PermohonanForm::class)->name('.edit');
+        Route::post('/{id}/detail', [ProcessController::class, 'submitProcessAction'])->name('.submit-action');
+    });
+
+    Route::prefix('permohonan-hak')->name('permohonan-hak')->group(function() {
+        Route::get('/', SubmissionCreatedIndex::class)->name('.index');
     });
 
     Route::prefix('process-action')->name('process-action')->group(function() {
