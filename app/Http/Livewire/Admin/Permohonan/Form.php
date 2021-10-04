@@ -20,7 +20,7 @@ class Form extends Component
     public $code;
 
     protected $rules = [
-        'code' => 'required|max:12|unique:submissions,code',
+        'code' => 'required|max:20|unique:submissions,code',
         'title' => 'required|min:3|max:100',
     ];
 
