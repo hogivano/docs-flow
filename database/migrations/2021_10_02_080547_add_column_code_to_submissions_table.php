@@ -15,7 +15,7 @@ class AddColumnCodeToSubmissionsTable extends Migration
     {
         Schema::table('submissions', function (Blueprint $table) {
             //
-            $table->string('code', 12)->after('id')->unique();
+            $table->string('code', 20)->after('id')->unique();
         });
     }
 

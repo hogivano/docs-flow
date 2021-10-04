@@ -30,7 +30,7 @@
                     <h5 class="mb-2">Process</h5>
                 </div>
                 <div class="d-flex align-items-center">
-                    <button wire:click="toggleModal" class="btn btn-link text-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button class="btn btn-link text-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Ubah Urutan
                     </button>
                     <a href="{{ route('process.create.application', ['application_id' => $application->id]) }}" wire:click="toggleModal"
